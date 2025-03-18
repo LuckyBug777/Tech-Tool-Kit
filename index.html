@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A curated collection of essential tech tools and platforms for students in tech">
+    <meta name="keywords"
+        content="tech tools, student resources, v0.dev, claude.ai, netlify, github, flutterflow, stackoverflow, linkedin, w3schools, leetcode, hackerrank, firebase">
+    <title>Essential Tools for Students in Tech</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 1rem;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .tool-icon {
+            transition: all 0.5s ease;
+            backface-visibility: hidden;
+        }
+
+        .card:hover .tool-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .hero-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .hero-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+
+        .category-badge {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .dark-mode {
+            background-color: #0f172a;
+            color: #f1f5f9;
+        }
+
+        .dark-mode .navbar {
+            background-color: #1e293b;
+        }
+
+        .dark-mode .card {
+            background-color: #1e293b;
+            color: #f1f5f9;
+            box-shadow: 0 10px 30px -5px rgba(2, 6, 23, 0.3);
+        }
+
+        .dark-mode .card p {
+            color: #cbd5e1;
+        }
+
+        .dark-mode .btn-primary {
+            background-color: #3b82f6;
+        }
+
+        .dark-mode section.bg-white,
+        .dark-mode section.bg-gray-50 {
+            background-color: #0f172a;
+        }
+
+        .dark-mode .text-gray-800 {
+            color: #f1f5f9;
+        }
+
+        .dark-mode .text-gray-600 {
+            color: #cbd5e1;
+        }
+
+        .dark-mode input {
+            background-color: #1e293b;
+            color: #f1f5f9;
+            border-color: #334155;
+        }
+
+        .dark-mode .bg-gray-100 {
+            background-color: #1e293b;
+        }
+
+        .glossy-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .dark-mode .custom-scroll::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        .dark-mode .custom-scroll::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+            }
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            padding: 5px 10px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-blur {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-gray-50 transition-colors duration-500 custom-scroll">
+    <!-- Navigation Bar -->
+    <nav
+        class="navbar fixed top-0 bg-white bg-opacity-90 header-blur shadow-lg px-6 py-4 flex justify-between items-center z-50 transition-colors duration-500 w-full">
+        <div class="flex items-center">
+            <div
+                class="h-10 w-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+                <i class="fas fa-laptop-code text-white text-xl"></i>
+            </div>
+            <span class="font-bold text-xl text-gray-800 dark:text-white">TechToolKit</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#tools"
+                class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 font-medium">Tools</a>
+            <a href="#categories"
+                class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 font-medium">Categories</a>
+            <a href="#about"
+                class="text-gray-600 hover:text-indigo-600 transition-colors duration-300 font-medium">About</a>
+            <button id="darkModeToggle"
+                class="p-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <i class="fas fa-moon text-gray-600"></i>
+            </button>
+        </div>
+        <div class="md:hidden flex items-center">
+            <button id="mobileMenuButton"
+                class="p-2 rounded-lg text-gray-600 hover:bg-gray-200 transition-colors duration-300 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-40 hidden transition-opacity duration-300"
+        style="opacity: 0;">
+        <div
+            class="absolute right-0 top-0 h-full w-64 bg-white dark:bg-gray-800 shadow-lg transform translate-x-full transition-transform duration-300">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="font-bold text-lg text-gray-800 dark:text-white">Menu</h3>
+                    <button id="closeMenu"
+                        class="p-2 rounded-lg text-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 focus:outline-none">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="flex flex-col space-y-4">
+                    <a href="#tools"
+                        class="py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600 rounded-lg transition-colors duration-300">Tools</a>
+                    <a href="#categories"
+                        class="py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600 rounded-lg transition-colors duration-300">Categories</a>
+                    <a href="#about"
+                        class="py-2 px-4 text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600 rounded-lg transition-colors duration-300">About</a>
+                    <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <button id="mobileDarkMode"
+                            class="flex items-center py-2 px-4 w-full text-left text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600 rounded-lg transition-colors duration-300">
+                            <i class="fas fa-moon mr-3"></i>
+                            <span>Dark Mode</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+        class="relative pt-32 pb-24 px-6 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-0 right-0 bg-white opacity-10 rounded-full w-96 h-96 -mt-20 -mr-20"></div>
+            <div class="absolute bottom-0 left-0 bg-white opacity-10 rounded-full w-80 h-80 -mb-20 -ml-20"></div>
+            <div class="absolute top-1/2 left-1/3 bg-white opacity-10 rounded-full w-40 h-40"></div>
+        </div>
+
+        <div class="container mx-auto max-w-5xl relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-white bg-opacity-20 text-white text-sm font-medium mb-6">
+                        STUDENT TECH WORKSHOP
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">Essential Tools for
+                        Students in Tech</h1>
+                    <p class="text-xl opacity-90 mb-10 leading-relaxed">Navigate the tech landscape with confidence.
+                        Discover the platforms and resources that industry professionals use daily to build, create, and
+                        connect.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#tools"
+                            class="btn-gradient px-8 py-3 rounded-lg font-medium shadow-xl text-white flex items-center">
+                            <i class="fas fa-rocket mr-2"></i>
+                            Explore Tools
+                        </a>
+                        <button id="filterToggle"
+                            class="px-8 py-3 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-lg font-medium transition-all duration-300 backdrop-filter backdrop-blur-sm flex items-center">
+                            <i class="fas fa-filter mr-2"></i>
+                            Filter by Category
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden md:block relative">
+                    <div class="relative w-full h-80 animate-float">
+                        <div
+                            class="absolute top-0 left-0 w-40 h-40 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-xl transform rotate-6">
+                        </div>
+                        <div
+                            class="absolute top-10 left-20 w-40 h-40 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg shadow-xl transform -rotate-6">
+                        </div>
+                        <div
+                            class="absolute top-20 left-40 w-40 h-40 bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg shadow-xl transform rotate-12">
+                        </div>
+                        <div
+                            class="absolute top-16 left-24 w-64 h-60 bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-lg shadow-xl transform -rotate-3 p-6 flex flex-col justify-between border border-white border-opacity-20">
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <div class="flex space-x-1">
+                                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                    </div>
+                                    <div class="text-xs">tech-tools.app</div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-white bg-opacity-30 rounded-full w-3/4"></div>
+                                    <div class="h-3 bg-white bg-opacity-30 rounded-full w-full"></div>
+                                    <div class="h-3 bg-white bg-opacity-30 rounded-full w-5/6"></div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="h-8 bg-indigo-500 bg-opacity-50 rounded"></div>
+                                <div class="h-8 bg-purple-500 bg-opacity-50 rounded"></div>
+                                <div class="h-8 bg-pink-500 bg-opacity-50 rounded"></div>
+                                <div class="h-8 bg-blue-500 bg-opacity-50 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-shape">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill" fill="#f9fafb" fill-opacity="1"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="py-6 bg-white">
+        <div class="container mx-auto max-w-6xl px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-indigo-600">10+</p>
+                    <p class="text-gray-600 text-sm mt-1">Essential Tools</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-indigo-600">5</p>
+                    <p class="text-gray-600 text-sm mt-1">Categories</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-indigo-600">100%</p>
+                    <p class="text-gray-600 text-sm mt-1">Free Options</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-3xl font-bold text-indigo-600">24/7</p>
+                    <p class="text-gray-600 text-sm mt-1">Learning Access</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Filter Section -->
+    <section id="categories" class="py-16 px-6 bg-white transition-colors duration-500">
+        <div class="container mx-auto max-w-6xl">
+            <div class="text-center mb-12">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-800 text-sm font-medium mb-3">
+                    DISCOVER
+                </span>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Find The Perfect Tools</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Filter through our curated collection of tech tools to find
+                    exactly what you need for your projects and learning journey.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-8">
+                <button
+                    class="category-badge px-5 py-2.5 bg-indigo-100 text-indigo-700 rounded-full font-medium hover:bg-indigo-200 transition-colors duration-300 category-filter active shadow-md"
+                    data-category="all">
+                    <i class="fas fa-th-large mr-2"></i>All Tools
+                </button>
+                <button
+                    class="category-badge px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors duration-300 category-filter shadow-md"
+                    data-category="ai">
+                    <i class="fas fa-robot mr-2"></i>AI & Automation
+                </button>
+                <button
+                    class="category-badge px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors duration-300 category-filter shadow-md"
+                    data-category="coding">
+                    <i class="fas fa-code mr-2"></i>Coding & Learning
+                </button>
+                <button
+                    class="category-badge px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors duration-300 category-filter shadow-md"
+                    data-category="deployment">
+                    <i class="fas fa-cloud-upload-alt mr-2"></i>Deployment
+                </button>
+                <button
+                    class="category-badge px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors duration-300 category-filter shadow-md"
+                    data-category="networking">
+                    <i class="fas fa-users mr-2"></i>Networking
+                </button>
+                <button
+                    class="category-badge px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 transition-colors duration-300 category-filter shadow-md"
+                    data-category="practice">
+                    <i class="fas fa-laptop-code mr-2"></i>Practice
+                </button>
+            </div>
+
+            <!-- <div class="relative mx-auto max-w-lg mb-12">
+                <input type="text" id="searchTools" placeholder="Search for tools..." class="w-full px-5 py-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 shadow-md pl-12">
+                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                <div id="searchClear" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer hidden">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section id="tools" class="py-1 px-6 bg-gray-50 transition-colors duration-500">
+        <div class="container mx-auto max-w-6xl">
+            <!-- <div class="text-center mb-12">
+                    <span class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-800 text-sm font-medium mb-3">
+                        TOOLBOX
+                    </span>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Essential Tech Platforms</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Discover the platforms and tools used by professionals and students alike to build amazing projects and advance their careers.</p>
+                </div> -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 -mt-4">
+                <!-- v0.dev Card -->
+
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg relative" data-category="ai">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-paint-brush text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">v0.dev</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-robot mr-1"></i> AI & Automation
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Generate beautiful UI components and designs with AI.
+                            Perfect for rapid prototyping and exploring design ideas without coding.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>AI-powered UI generation</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Tailwind CSS components</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Natural language prompts</span>
+                            </div>
+                        </div>
+                        <a href="https://v0.dev" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Explore v0.dev
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Claude.ai Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="ai">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-robot text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">Claude.ai</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-robot mr-1"></i> AI & Automation
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">An intelligent AI assistant that can help with
+                            research, writing, coding, and learning complex topics with nuanced understanding.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Research assistance</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Code explanation & debugging</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Writing improvement</span>
+                            </div>
+                        </div>
+                        <a href="https://claude.ai" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Try Claude.ai
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Netlify Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="deployment">
+                    <div class="p-8">
+                        <!-- Updated Tool Icon Section -->
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-cloud-upload-alt text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">Netlify</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-cloud-upload-alt mr-1"></i> Deployment
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Deploy and host websites with ease using continuous
+                            deployment from Git. Perfect for showcasing your portfolio and projects.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Free hosting tier</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Continuous deployment</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Custom domains</span>
+                            </div>
+                        </div>
+                        <!-- Updated Button Section -->
+                        <a href="https://netlify.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2 text-white"></i> Visit Netlify
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- GitHub Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="coding">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fab fa-github text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">GitHub</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-code mr-1"></i> Coding & Learning
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Host your projects, collaborate with others, and build
+                            a portfolio that showcases your coding skills to potential employers.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Version control</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Collaboration tools</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Project portfolio</span>
+                            </div>
+                        </div>
+                        <a href="https://github.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-black text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Explore GitHub
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FlutterFlow Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="coding">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">FlutterFlow</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-code mr-1"></i> Coding & Learning
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Build Flutter apps visually without writing code.
+                            Perfect for prototyping mobile apps and learning app development concepts.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Visual UI builder</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Code export</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>App publishing</span>
+                            </div>
+                        </div>
+                        <a href="https://flutterflow.io" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Try FlutterFlow
+                        </a>
+                    </div>
+                </div>
+
+                <!-- StackOverflow Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="networking">
+                    <div class="p-8">
+                        <!-- Updated Tool Icon Section -->
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fab fa-stack-overflow text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">Stack Overflow</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-users mr-1"></i> Networking
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Get answers to your programming questions from a
+                            community of millions of developers and build your reputation.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Question & answer forum</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Reputation system</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Code snippets</span>
+                            </div>
+                        </div>
+                        <!-- Updated Button Section -->
+                        <a href="https://stackoverflow.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2 text-white"></i> Visit Stack Overflow
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- LinkedIn Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="networking">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fab fa-linkedin-in text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">LinkedIn</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-users mr-1"></i> Networking
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Build your professional network, showcase your skills
+                            and projects, and discover job opportunities in the tech industry.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Professional networking</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Job opportunities</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Skill endorsements</span>
+                            </div>
+                        </div>
+                        <a href="https://www.linkedin.com/in/prathvirajprabhu/https://www.linkedin.com/in/prathvirajprabhu/"
+                            target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Visit LinkedIn
+                        </a>
+                    </div>
+                </div>
+
+                <!-- W3Schools Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="coding">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-green-500 to-green-700 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-book text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">W3Schools</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-code mr-1"></i> Coding & Learning
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Learn web development with interactive tutorials,
+                            examples, and exercises. Perfect for beginners and reference for professionals.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Interactive tutorials</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Code examples</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Practice exercises</span>
+                            </div>
+                        </div>
+                        <a href="https://www.w3schools.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Learn at W3Schools
+                        </a>
+                    </div>
+                </div>
+                <!-- Leetcode Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="practice">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-code-branch text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">LeetCode</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-laptop-code mr-1"></i> Practice
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Sharpen your coding skills with algorithm challenges
+                            and prepare for technical interviews with practice problems.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Algorithm challenges</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Interview preparation</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Coding competitions</span>
+                            </div>
+                        </div>
+                        <a href="https://leetcode.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Practice on LeetCode
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HackerRank Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="practice">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <div
+                                class="tool-icon h-16 w-16 bg-gradient-to-br from-green-600 to-green-800 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fab fa-hackerrank text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">HackerRank</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-green-100 text-green-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-laptop-code mr-1"></i> Practice
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Build your coding skills across various domains with
+                            challenges, tutorials, and certification opportunities.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Coding challenges</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Skill certification</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Contest participation</span>
+                            </div>
+                        </div>
+                        <a href="https://www.hackerrank.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Join HackerRank
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Firebase Card -->
+                <div class="card bg-white rounded-xl overflow-hidden shadow-lg" data-category="deployment">
+                    <div class="p-8">
+                        <div class="flex items-center justify-center h-20 mb-6">
+                            <!-- Updated logo background color -->
+                            <div
+                                class="tool-icon h-16 w-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                                <i class="fas fa-fire text-white text-2xl"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-center">Firebase</h3>
+                        <div class="flex justify-center mb-4">
+                            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">
+                                <i class="fas fa-cloud-upload-alt mr-1"></i> Deployment
+                            </span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-center">Build and deploy web and mobile apps quickly with
+                            authentication, databases, and hosting services all in one platform.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Real-time database</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Authentication</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span>Cloud functions</span>
+                            </div>
+                        </div>
+                        <!-- Updated button color -->
+                        <a href="https://firebase.google.com" target="_blank"
+                            class="block w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-center transition-all duration-300 transform hover:-translate-y-1 shadow-lg">
+                            <i class="fas fa-external-link-alt mr-2"></i> Try Firebase
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="hidden text-center py-16">
+                <div class="inline-block p-4 rounded-full bg-gray-100 text-gray-500 mb-4">
+                    <i class="fas fa-search text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">No tools found</h3>
+                <p class="text-gray-600">Try adjusting your search or filter to find what you're looking for.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-6 bg-white transition-colors duration-500">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-indigo-100 text-indigo-800 text-sm font-medium mb-3">
+                        ABOUT
+                    </span>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Empower Your Tech Journey</h2>
+                    <p class="text-gray-600 mb-6">
+                        TechToolKit is a curated collection of essential tools and platforms for students and
+                        professionals in the tech industry. Our mission is to help you discover the right resources to
+                        accelerate your learning, streamline your workflow, and build amazing projects.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Whether you're just starting out or looking to expand your skills, these tools will help you
+                        stay productive, creative, and connected with the tech community.
+                    </p>
+                    <div class="flex flex-wrap gap-6 mb-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-indigo-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Curated Selection</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-indigo-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Industry Standard</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-check text-indigo-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Free Options</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div
+                        class="relative w-full h-80 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl overflow-hidden shadow-lg">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-200 rounded-full -mr-16 -mt-16"></div>
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-purple-200 rounded-full -ml-16 -mb-16"></div>
+                        <div class="relative h-full w-full flex items-center justify-center">
+                            <div class="text-center px-8">
+                                <div class="text-5xl text-indigo-600 mb-4">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Start Building Today</h3>
+                                <p class="text-gray-600 mb-6">
+                                    Equip yourself with the tools used by professionals and take your tech skills to the
+                                    next level.
+                                </p>
+                                <a href="#tools"
+                                    class="inline-block py-2 px-6 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                                    Explore Tools
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section
+        class="py-16 px-6 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+            <div class="absolute top-0 right-0 bg-white opacity-10 rounded-full w-64 h-64 -mt-32 -mr-32"></div>
+            <div class="absolute bottom-0 left-0 bg-white opacity-10 rounded-full w-64 h-64 -mb-32 -ml-32"></div>
+        </div>
+
+        <div class="container mx-auto max-w-3xl relative z-10">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-4">Stay Updated with Tech Trends</h2>
+                <p class="text-lg opacity-90 mb-6">Subscribe to our newsletter for the latest tools, tutorials, and tech
+                    opportunities.</p>
+
+                <!-- Form -->
+                <form id="newsletterForm" class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+                    <input type="email" name="email" placeholder="Your email address" required
+                        class="py-3 px-4 rounded-lg flex-grow bg-white bg-opacity-20 backdrop-filter backdrop-blur-sm border border-white border-opacity-20 placeholder-white placeholder-opacity-70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+                    <button type="submit"
+                        class="py-3 px-6 bg-white text-indigo-700 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-white">
+                        Subscribe
+                    </button>
+                </form>
+
+                <!-- Success message -->
+                <p id="successMessage" class="text-sm opacity-90 mt-4 hidden">✅ Thank you for subscribing!</p>
+                <p class="text-sm opacity-80 mt-3">We'll never share your email. Unsubscribe at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript to handle form without redirection -->
+    <script>
+        const form = document.getElementById('newsletterForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault(); // Prevent page redirect
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch("https://formspree.io/f/xwplpaya", {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    form.reset(); // Clear form fields
+                    successMessage.classList.remove('hidden');
+                } else {
+                    alert("Oops! Something went wrong. Please try again.");
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong!");
+            }
+        });
+    </script>
+
+
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 bg-gray-900 text-gray-300">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="h-10 w-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-laptop-code text-white text-xl"></i>
+                        </div>
+                        <span class="font-bold text-xl text-white">TechToolKit</span>
+                    </div>
+                    <p class="text-sm mb-4">
+                        Empowering students and professionals with the essential tools for success in the tech industry.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/LuckyBug777"
+                            class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        </a>
+                        <a href="https://www.linkedin.com/in/prathvirajprabhu/"
+                            class="text-gray-400 hover:text-white transition-colors duration-300">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#tools"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Tools</a></li>
+                        <li><a href="#categories"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Categories</a>
+                        </li>
+                        <li><a href="#about"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">AI &
+                                Automation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Coding &
+                                Learning</a></li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Deployment</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Networking</a>
+                        </li>
+                        <li><a href="#"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Practice</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-indigo-400 mt-1 mr-2"></i>
+                            <span>professionalmanglore@gmail.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mt-1 mr-2"></i>
+                            <span>8546954246</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-sm text-center">
+                <p>&copy; 2025 4i'S. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const mobileDarkMode = document.getElementById('mobileDarkMode');
+        const body = document.body;
+
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+
+            if (isDarkMode) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun text-yellow-400"></i>';
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon text-gray-600"></i>';
+            }
+        }
+
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        mobileDarkMode.addEventListener('click', toggleDarkMode);
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun text-yellow-400"></i>';
+        }
+
+        // Mobile Menu
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMenuButton = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuContent = mobileMenu.querySelector('div');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.style.opacity = '1';
+                mobileMenuContent.style.transform = 'translateX(0)';
+            }, 10);
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.style.opacity = '0';
+            mobileMenuContent.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        closeMenuButton.addEventListener('click', closeMobileMenu);
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMobileMenu();
+            }
+        });
+
+        // Mobile menu links
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Category Filtering
+        const categoryButtons = document.querySelectorAll('.category-filter');
+        const cards = document.querySelectorAll('.card');
+        const noResults = document.getElementById('noResults');
+
+        function filterCards(category) {
+            let visibleCards = 0;
+
+            cards.forEach(card => {
+                const cardCategory = card.dataset.category;
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'block';
+                    visibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCards === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                categoryButtons.forEach(btn => btn.classList.remove('active', 'bg-indigo-100', 'text-indigo-700'));
+                categoryButtons.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
+                button.classList.remove('bg-gray-100', 'text-gray-700');
+                button.classList.add('active', 'bg-indigo-100', 'text-indigo-700');
+
+                // Filter cards
+                const category = button.dataset.category;
+                filterCards(category);
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchTools');
+        const searchClear = document.getElementById('searchClear');
+
+        function searchCards() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let visibleCards = 0;
+
+            if (searchTerm === '') {
+                // If search is empty, respect the category filter
+                const activeCategory = document.querySelector('.category-filter.active').dataset.category;
+                filterCards(activeCategory);
+                searchClear.classList.add('hidden');
+                return;
+            }
+
+            searchClear.classList.remove('hidden');
+
+            cards.forEach(card => {
+                const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+                const cardDescription = card.querySelector('p').textContent.toLowerCase();
+
+                if (cardTitle.includes(searchTerm) || cardDescription.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    visibleCards++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            if (visibleCards === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        searchInput.addEventListener('input', searchCards);
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchClear.classList.add('hidden');
+            const activeCategory = document.querySelector('.category-filter.active').dataset.category;
+            filterCards(activeCategory);
+        });
+
+        // Filter toggle for mobile
+        const filterToggle = document.getElementById('filterToggle');
+        const categoriesSection = document.getElementById('categories');
+
+        filterToggle.addEventListener('click', () => {
+            categoriesSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
